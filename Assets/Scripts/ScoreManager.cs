@@ -10,20 +10,19 @@ public class ScoreManager : MonoBehaviour
     //Add score and combos etc.
     //Make score counter readable by UI manager.
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+   
     public void EnemyKilled()
     {
+        Debug.Log("enemy killed");
+
         score += 10;
+        uiManager.UpdateScore(score);
+    }
+
+    public void PlayerKilled()
+    {
+        Debug.Log("player killed");
+        score -= 10;
         uiManager.UpdateScore(score);
     }
 }
