@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class DragAll : MonoBehaviour
 {
+    //Test1: Mouse input in an if-statement.
+    //Test2: Create a Physics2D.Raycast that sends a ray.
+    //Test3: Check if we hit anything.
+    //Test4: Create a variable to store the thing we hit and want to drag. Store the hit info.
+    //Test5: Empty the dragging variable when we release the mouse button.
+    //Test6: Offset the position of the object being dragged?? (we need the object's original z-position).
+    
     private Transform draggingTF = null;
     private Vector3 offset;
   

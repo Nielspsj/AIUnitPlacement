@@ -17,10 +17,10 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         //player = GameObject.FindGameObjectWithTag("Player").transform;
-        //SetupNavmeshAgent();
+        SetupNavmeshAgent();
 
         UpdateWaypointDestination();
-
+        agent.SetDestination(target);
     }
 
     // Update is called once per frame
@@ -37,6 +37,7 @@ public class EnemyMovement : MonoBehaviour
         {
             target = transform.position;
             //UpdateNavmeshMovement();
+            agent.SetDestination(target);
         }        
     }
 
@@ -45,7 +46,7 @@ public class EnemyMovement : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-        target = player.position;
+        //target = player.position;
     }
     private void UpdateNavmeshMovement()
     {
@@ -60,20 +61,25 @@ public class EnemyMovement : MonoBehaviour
 
     private void UpdateWayPointMovement()
     {
+        
         if (lastTarget == null)
         {
-            Movement();
+            //Movement();
+            //UpdateNavmeshMovement();
         }
         else if(lastTarget != null)
         {
             target = lastTarget;
-            Movement();
+            //Movement();
+            //UpdateNavmeshMovement();
         }
         
-        if (Vector2.Distance(transform.position, target) < 0.1)
+        if (Vector2.Distance(transform.position, target) < 0.1f)
         {
-            UpdateWaypointDestination();
             NextWaypointIndex();
+            UpdateWaypointDestination();
+            Debug.Log("next target");
+
         }
     }
 
@@ -86,6 +92,7 @@ public class EnemyMovement : MonoBehaviour
     {
         target = waypoints[waypointIndex].position;
         lastTarget = target;
+        UpdateNavmeshMovement();
     }
     private void NextWaypointIndex()
     {

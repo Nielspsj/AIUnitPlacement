@@ -29,5 +29,7 @@ public class SimpleEnemyMovement : MonoBehaviour
     private void Movement()
     {
         transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+        //This if you want to go straight at an angle:
+        //transform.Translate(transform.right * speed * Time.deltaTime); 
     }
 }
