@@ -23,17 +23,22 @@ public class DragAll : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            //Store hit information of the object we hit. It must have a collider.
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             if (hit == true)
             {
+                //Store the object we hit into a dragging transform variable.
                 draggingTF = hit.transform;
+                //Store the offset because we need the z-position of the object.
                 offset = draggingTF.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
             }
         }
+        //Empty the storage of the dragging variable when we release the mouse.
         else if (Input.GetMouseButtonUp(0))
         {
             draggingTF = null;
         }
+        //If we have an object stored in the dragging variable: Change the position.
         if (draggingTF != null)
         {
             draggingTF.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
